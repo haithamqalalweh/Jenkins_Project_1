@@ -1,6 +1,7 @@
 pipeline {
   environment {
-    imagename = "yenigul/hacicenkins"
+    registry = "haithamqalalweh/project1"
+    imagename = "web-app"
     registryCredential = 'docker-hub'
     dockerImage = ''
   }
@@ -15,7 +16,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build imagename
+          dockerImage = docker.build registry + "$BUILD_NUMBER"
         }
       }
     }
